@@ -53,6 +53,12 @@ VirtualDrive(action,file:="",type:="",drive:=0){
 				dtSubVersion := SubStr(vdFileProductVersion,1,4)
 				If (vdExe != "DTAgent.exe")
 					ScriptError(vdFileProductName . " v" . vdFileProductVersion . " requires you to set your Virtual Drive Path to DTAgent.exe, not " . vdExe)
+			} Else If SubStr(vdFileProductVersion,1,2) = 11
+			{	vdMode := "DT11"
+				supportedExtensions := "ape|b5t|b6t|bwt|ccd|cdi|cue|flac|iscsi|iso|isz|mds|mdx|nrg|tc|vdh|vdi|vmdk|wav|zip"
+				dtSubVersion := SubStr(vdFileProductVersion,1,4)
+				If (vdExe != "DTCommandLine.exe")
+					ScriptError(vdFileProductName . " v" . vdFileProductVersion . " requires you to set your Virtual Drive Path to DTCommandLine.exe, not " . vdExe)
 			} Else If SubStr(vdFileProductVersion,1,3) = 1.0
 				ScriptError(vdFileProductName . " v" . vdFileProductVersion . " is a Virtual CloneDrive application. Please set RocketLauncherUI to use VCDMount.exe instead.")
 			Else
@@ -245,7 +251,7 @@ VirtualDrive(action,file:="",type:="",drive:=0){
 				ScriptError(type . " is an unsupported use of VirtualDrive. Only dt and scsi drives are supported.")
 			If (dtSubVersion = "10.4") {
 				vdCommand := "-mount " . type . ", 0, """ . file . """"
-			} Else {
+			}Else {
 				vdCommand := "-mount " . type . ", " . vdDriveLetter . ", """ . file . """"
 			}
 		} Else If (action = "unmount") {
@@ -261,8 +267,25 @@ VirtualDrive(action,file:="",type:="",drive:=0){
 				If !curErr
 					ScriptError("A error occured finding the drive letter associated to your " . type . " drive. Please make sure you are using the latest Daemon Tools Lite v4.")
 				RLLog.Debug("VirtualDrive ended - Retrieved your " . type . " drive letter: " . vdDriveLetter)
-			} Else
+			} 
 				RLLog.Info("VirtualDrive - " . vdMode . " does not require the ""get"" action")
+	}
+	Else If (vdMode = "DT11")
+	{
+		type := If type ? type : (If vdUseSCSI = "true" ? "scsi" : "dt")		
+		If (action = "mount")
+		{	If (dtSubVersion = "11.0") {
+				vdCommand := "--mount_to --letter " . vdDriveLetter . " --path """ . file . """"
+			} 
+		} Else If (action = "unmount") {
+			If (dtSubVersion = "11.0") {
+				vdCommand := "--unmount --letter " . vdDriveLetter ; CLI differs in 11.0 version so it must be differentiated
+			} 
+		} Else If (action = "get")
+		{	If (dtSubVersion = "11.0") {
+				vdDriveLetter := (If vdUseSCSI = "true" ? "E" : "D")			
+			}			
+		}
 	}
 	Else If (vdMode = "DT6")
 	{
