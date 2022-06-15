@@ -1,5 +1,5 @@
 ## rlauncher-custom
-Some updates to (currently stale) Rocket Launcher by djvj and team.
+Some updates to (currently stale) [https://www.rlauncher.com/](Rocket Launcher) by djvj and team.
 
 Those changes were tested on my Setup and I can´t assure it´ll not destroy your system.
 Use at your own risk.
