@@ -17,7 +17,7 @@ Second of all: From anywhere in your filesystem run.
 
 git clone https://github.com/ericitaquera/rlauncher-custom.git (this will download this repository under a subdirectory called "rlauncher-custom"
 
-Copy the file from this new directory to your Rocket Laucher setup in the same relative path.
+Copy the file from this new directory to your Rocket Laucher setup in the very same relative path.
 
 E.g:
 
