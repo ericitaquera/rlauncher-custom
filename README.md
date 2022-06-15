@@ -1,5 +1,7 @@
 ## rlauncher-custom
 I´m adding some updates to (currently stale) [Rocket Launcher](https://www.rlauncher.com/) by djvj and team.
+
+Rocket Launcher is a great project which abstract several emulators, rom extensions, side scripts, help applications and whatever allowing game emulators like Hyperspin to run a game smoothly. However, unfortunatelly, there is no official update since [version 1.2.0.1](https://www.rlauncher.com/forum/index.php?threads/rocketlauncher-v1-2-0-1.4301/)
  
 I´ll publish here whenever I add or alter code to leverage stuff useful for my setup.
 
