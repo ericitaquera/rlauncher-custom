@@ -12,7 +12,7 @@ Use at your own risk.
 Simply copy and replace the files from here to the same directory structure of your RocketLauncher setup.
 
 ## Usage Example:
-To use my Virtual Drive.ahk
+To use my custom Virtual Drive.ahk
 
 First of all: BACKUP YOUR STUFF BEFORE PROCEEDING.
 
